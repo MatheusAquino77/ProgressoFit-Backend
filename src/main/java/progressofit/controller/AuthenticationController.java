@@ -44,6 +44,7 @@ public class AuthenticationController {
         String token = tokenService.generateToken((User) auth.getPrincipal());
 
         return ResponseEntity.ok(new LoginResponseDTO(token));
+    
     }
 
     @PostMapping("/register")
@@ -56,7 +57,7 @@ public class AuthenticationController {
 
         UserRole userRole = registerDTO.role() != null ? registerDTO.role() : UserRole.USER;
         User newUser = new User(registerDTO.name(), registerDTO.email(), encryptedPassword, userRole);
-
+        deletarUsuario = main
         this.userRepository.save(newUser);
 
         URI location = ServletUriComponentsBuilder
